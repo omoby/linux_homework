@@ -1,0 +1,9 @@
+#!/bin/bash
+
+for name in `cat user.txt`
+do
+	pw=`echo $[$RANDOM]|md5sum|cut -c 1-5`
+	useradd $name
+	echo "$name $pw" >> /root/adduser_pw.txt
+	echo $name:$pw |chpasswd 
+done
